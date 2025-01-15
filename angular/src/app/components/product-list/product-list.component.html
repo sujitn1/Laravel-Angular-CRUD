@@ -1,0 +1,10 @@
+<div class="product-list">
+    <h2>Product List</h2>
+    <div *ngFor="let product of products" class="product">
+      <img src="https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/1/21E3S04W00-0_1.webp" alt="{{ product.name }} image" />
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p>Price: ${{ product.price }}</p>
+    </div>
+  </div>
+  
