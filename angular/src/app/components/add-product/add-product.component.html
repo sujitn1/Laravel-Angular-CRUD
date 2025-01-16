@@ -1,0 +1,42 @@
+<div class="add-product-container">
+    <h2>Add Product</h2>
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="name">Product Name:</label>
+        <input type="text" id="name" [(ngModel)]="product.name" name="name" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" [(ngModel)]="product.description" name="description" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="product.price" name="price" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" id="category" [(ngModel)]="product.category" name="category" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="discount">Discount:</label>
+        <input type="number" id="discount" [(ngModel)]="product.discount" name="discount" />
+      </div>
+  
+      <div class="form-group">
+        <label for="discountPercentage">Discount Percentage:</label>
+        <input type="number" id="discountPercentage" [(ngModel)]="product.discountPercentage" name="discountPercentage" />
+      </div>
+  
+      <div class="form-group">
+        <label for="image">Product Image:</label>
+        <input type="file" id="image" (change)="onFileChange($event)" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+  </div>
+  

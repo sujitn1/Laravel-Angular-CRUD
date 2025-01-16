@@ -32,14 +32,23 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'name' => 'required',
+            'description' => 'required',
             'price' => 'required|numeric',
-            'image' => 'nullable|string'
+            'category' => 'required',
+            'discount' => 'nullable|integer',
+            'discountPercentage' => 'nullable|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $product = Product::create($validatedData);
-        return response()->json($product, 201);
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('product-images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
+    
+        Product::create($validatedData);
+    
+        return response()->json(['message' => 'Product added successfully!'], 201);
     }
 
     // Update an existing product
@@ -52,13 +61,17 @@ class ProductController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'image' => 'nullable|string'
+            'category' => 'nullable|string',
+            'image' => 'nullable|url',
+            'discount' => 'nullable|numeric',
+            'discountPercentage' => 'nullable|numeric'
         ]);
 
-        $product->update($validatedData);
-        return response()->json($product);
+        $product = Product::findOrFail($id);
+        $product->update($validated);
+        return response()->json(['message' => 'Product updated successfully!', 'data' => $product], 200);
     }
 
     // Delete a product

@@ -1,10 +1,19 @@
+<button routerLink="/add">Add Product</button>
 <div class="product-list">
-    <h2>Product List</h2>
-    <div *ngFor="let product of products" class="product">
-      <img src="https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/1/21E3S04W00-0_1.webp" alt="{{ product.name }} image" />
-      <h3>{{ product.name }}</h3>
-      <p>{{ product.description }}</p>
-      <p>Price: ${{ product.price }}</p>
+  <h2>Featured Products</h2>
+  <div class="product" *ngFor="let product of products">
+    <div class="product-header">
+      <span class="category">{{ product.category }}</span>
     </div>
+    <img
+      src="{{ product.image || 'https://store.lenovo.com/media/catalog/product/cache/90c9f6aca4e4b4913161c59294bbd070/2/1/21E3S04W00-0_1.webp' }}"
+      alt="{{ product.name }}"
+    />
+    <h3>{{ product.name }}</h3>
+    <div class="pricing">
+      <p class="discount">Save ₹{{ product.discount }} - {{ product.discountPercentage }}% off</p>
+      <p class="price">₹{{ product.price }}</p>
+    </div>
+    <button [routerLink]="['/edit', product.id]">Edit</button>
   </div>
-  
+</div>

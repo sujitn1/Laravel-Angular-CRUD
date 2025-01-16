@@ -5,16 +5,25 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CommonModule } from '@angular/common';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
+import { FormsModule } from '@angular/forms';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { AppRoutingModule } from './app-routing.module';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { Router } from '@angular/router';
+import { NavigationError } from '@angular/router';
 @NgModule({
   imports: [
     BrowserModule,
     CommonModule,
     AppComponent,
-    ProductListComponent
+    ProductListComponent,
+    FormsModule,
+    AppRoutingModule,
+    EditProductComponent
   ],
   providers: []
 })
+
 export class AppModule {
   ngDoBootstrap(): void {
     import('zone.js').then((Zone) => {
